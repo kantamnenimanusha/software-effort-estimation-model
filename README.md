@@ -1,10 +1,45 @@
-X = df[['LOC', 'Complexity', 'DomainKnowledge', 'TeamExperience']]
-y = df['Effort']
+# 🌟 **Software Effort Estimation Model**
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+This mini-project predicts **software effort, project duration, and cost** using basic Machine Learning models.  
+The system includes a simple **GUI built with Tkinter**, where users can upload an ARFF dataset and run prediction models.
 
-lr = LinearRegression().fit(X_train, y_train)
-knn = KNeighborsRegressor(n_neighbors=5).fit(X_train, y_train)
+---
 
-print("LR R²:", r2_score(y_test, lr.predict(X_test)))
-print("KNN R²:", r2_score(y_test, knn.predict(X_test)))
+## 📘 **What This Project Does**
+This tool estimates:
+
+- **Effort** (hours/days needed)
+- **Duration** (time to complete the project)
+- **Project Cost**
+
+Predictions are based on input features such as:
+
+- **LOC** (Lines of Code)  
+- **Complexity**  
+- **Domain Knowledge**  
+- **Team Experience**
+
+---
+
+## 🤖 **Machine Learning Models Used**
+The project uses two regression models:
+
+- **Linear Regression**  
+- **KNN Regression (k=5)**  
+
+Both models are trained and evaluated, and the one with better accuracy is displayed.
+
+---
+
+## 🖥️ **Features**
+- Simple login system  
+- Upload ARFF dataset  
+- Run ML models with one click  
+- View model results (MSE & R² score)  
+- Graphs for Actual vs Predicted values  
+
+---
+
+## ▶️ **How to Run**
+Install the required packages:
+

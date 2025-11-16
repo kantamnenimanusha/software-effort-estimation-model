@@ -1,24 +1,10 @@
-# Load ARFF file
-data = arff.load(open("dataset.arff"))
-df = pd.DataFrame(data["data"], columns=[a[0] for a in data["attributes"]])
-
-# Select features and target
 X = df[['LOC', 'Complexity', 'DomainKnowledge', 'TeamExperience']]
 y = df['Effort']
 
-# Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Linear Regression Model
-lr = LinearRegression()
-lr.fit(X_train, y_train)
-pred_lr = lr.predict(X_test)
+lr = LinearRegression().fit(X_train, y_train)
+knn = KNeighborsRegressor(n_neighbors=5).fit(X_train, y_train)
 
-# KNN Model
-knn = KNeighborsRegressor(n_neighbors=5)
-knn.fit(X_train, y_train)
-pred_knn = knn.predict(X_test)
-
-# Evaluation
-print("Linear Regression R²:", r2_score(y_test, pred_lr))
-print("KNN Regression R²:", r2_score(y_test, pred_knn))
+print("LR R²:", r2_score(y_test, lr.predict(X_test)))
+print("KNN R²:", r2_score(y_test, knn.predict(X_test)))
